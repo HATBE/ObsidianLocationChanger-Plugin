@@ -5,7 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import io.ConfigHandler;
+import ch.hatbe2113.obsidianhome.io.ConfigHandler;
 
 public class HomeHandler {
 	

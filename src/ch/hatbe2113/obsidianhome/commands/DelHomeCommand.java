@@ -6,8 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import ch.hatbe2113.obsidianhome.home.HomeHandler;
-import io.ConfigHandler;
-import io.TextOutput;
+import ch.hatbe2113.obsidianhome.io.ConfigHandler;
+import ch.hatbe2113.obsidianhome.io.TextOutput;
 
 public class DelHomeCommand implements CommandExecutor {
 	

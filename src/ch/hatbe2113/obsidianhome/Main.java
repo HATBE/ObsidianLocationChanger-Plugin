@@ -5,8 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ch.hatbe2113.obsidianhome.commands.DelHomeCommand;
 import ch.hatbe2113.obsidianhome.commands.HomeCommand;
 import ch.hatbe2113.obsidianhome.commands.SetHomeCommand;
-import io.ConfigHandler;
-import io.TextOutput;
+import ch.hatbe2113.obsidianhome.io.ConfigHandler;
+import ch.hatbe2113.obsidianhome.io.TextOutput;
 
 public class Main extends JavaPlugin {
 	

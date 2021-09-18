@@ -1,4 +1,4 @@
-package io;
+package ch.hatbe2113.obsidianhome.io;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
