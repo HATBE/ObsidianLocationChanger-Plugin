@@ -1,0 +1,11 @@
+main: ch.hatbe2113.obsidianhome.Main
+name: obsidianhome
+author: hatbe2113
+website: https://hatbe.ch
+description: A Minecraft Home plugin
+version: 1.0.0
+api-version: 1.17
+commands:
+  home:
+  sethome:
+  delhome:
