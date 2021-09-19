@@ -1,16 +1,21 @@
 package ch.hatbe2113.obsidianhome.commands;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import ch.hatbe2113.obsidianhome.home.HomeHandler;
 import ch.hatbe2113.obsidianhome.io.ConfigHandler;
 import ch.hatbe2113.obsidianhome.io.TextOutput;
 
-public class HomeCommand implements CommandExecutor {
+public class HomeCommand implements CommandExecutor, TabCompleter {
 	
 	private ConfigHandler configHandler;
 	private HomeHandler home;
@@ -29,6 +34,11 @@ public class HomeCommand implements CommandExecutor {
 		}
 		
 		Player p = (Player) sender;
+		
+		if(!p.hasPermission("obsidian.home.use")) {
+			TextOutput.outputToPlayer(p, "You don't have the permission to execute this command.");
+			return false;
+		}
 		
 		if(args.length == 0) {
 			
@@ -79,6 +89,36 @@ public class HomeCommand implements CommandExecutor {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+		
+		if(!(sender instanceof Player)) {
+			return null;
+		}
+		
+		Player p = (Player) sender;
+		
+		List<String> completions = new ArrayList<>();
+		
+		if(configHandler.getConfig().get("homes." + p.getUniqueId()) == null) {
+			return null;
+		}
+		
+		Object[] fields = configHandler.getConfig().getConfigurationSection("homes." + p.getUniqueId()).getKeys(false).toArray();
+		
+		if(fields.length <= 0) {
+			return null;
+		}
+		
+		for (Object key : fields){
+			completions.add((String) key);
+		}
+		
+		Collections.sort(completions);
+		
+		return completions;
 	}
 
 }

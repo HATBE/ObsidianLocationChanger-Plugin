@@ -29,6 +29,11 @@ public class DelHomeCommand implements CommandExecutor {
 		
 		Player p = (Player) sender;
 		
+		if(!p.hasPermission("obsidian.home.del")) {
+			TextOutput.outputToPlayer(p, "You don't have the permission to execute this command.");
+			return false;
+		}
+		
 		if(args.length != 1) {
 			TextOutput.outputToPlayer(p, "Please use /delhome [name]");
 			return false;

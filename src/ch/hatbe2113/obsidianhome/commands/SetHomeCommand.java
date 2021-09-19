@@ -29,6 +29,11 @@ public class SetHomeCommand implements CommandExecutor {
 		
 		Player p = (Player) sender;
 		
+		if(!p.hasPermission("obsidian.home.set")) {
+			TextOutput.outputToPlayer(p, "You don't have the permission to execute this command.");
+			return false;
+		}
+		
 		if(args.length != 1) {
 			TextOutput.outputToPlayer(p, "Please use /sethome [name]");
 			return false;

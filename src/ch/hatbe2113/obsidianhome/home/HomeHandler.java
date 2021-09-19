@@ -71,4 +71,5 @@ public class HomeHandler {
 		
 		configLoader.save();
 	}
+	
 }
