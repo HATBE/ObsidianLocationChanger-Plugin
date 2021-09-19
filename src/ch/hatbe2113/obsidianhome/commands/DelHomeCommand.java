@@ -6,15 +6,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import ch.hatbe2113.obsidianhome.home.HomeHandler;
-import ch.hatbe2113.obsidianhome.io.ConfigHandler;
+import ch.hatbe2113.obsidianhome.io.CustomConfigHandler;
 import ch.hatbe2113.obsidianhome.io.TextOutput;
 
 public class DelHomeCommand implements CommandExecutor {
 	
-	private ConfigHandler configHandler;
+	private CustomConfigHandler configHandler;
 	private HomeHandler home;
 	
-	public DelHomeCommand(ConfigHandler configHandler) {
+	public DelHomeCommand(CustomConfigHandler configHandler) {
 		this.configHandler = configHandler;
 		this.home = new HomeHandler(this.configHandler);
 	}

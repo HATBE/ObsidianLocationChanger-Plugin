@@ -12,15 +12,15 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import ch.hatbe2113.obsidianhome.home.HomeHandler;
-import ch.hatbe2113.obsidianhome.io.ConfigHandler;
+import ch.hatbe2113.obsidianhome.io.CustomConfigHandler;
 import ch.hatbe2113.obsidianhome.io.TextOutput;
 
 public class HomeCommand implements CommandExecutor, TabCompleter {
 	
-	private ConfigHandler configHandler;
+	private CustomConfigHandler configHandler;
 	private HomeHandler home;
 	
-	public HomeCommand(ConfigHandler configHandler) {
+	public HomeCommand(CustomConfigHandler configHandler) {
 		this.configHandler = configHandler;
 		this.home = new HomeHandler(this.configHandler);
 	}

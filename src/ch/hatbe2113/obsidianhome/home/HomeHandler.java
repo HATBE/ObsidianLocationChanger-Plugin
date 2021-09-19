@@ -5,13 +5,13 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import ch.hatbe2113.obsidianhome.io.ConfigHandler;
+import ch.hatbe2113.obsidianhome.io.CustomConfigHandler;
 
 public class HomeHandler {
 	
-	private ConfigHandler configLoader;
+	private CustomConfigHandler configLoader;
 	
-	public HomeHandler(ConfigHandler configLoader) {
+	public HomeHandler(CustomConfigHandler configLoader) {
 		this.configLoader = configLoader;
 	}
 	
