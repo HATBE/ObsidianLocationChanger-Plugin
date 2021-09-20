@@ -1,5 +1,7 @@
 package ch.hatbe2113.obsidianhome.home;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,47 +11,56 @@ import ch.hatbe2113.obsidianhome.io.CustomConfigHandler;
 
 public class HomeHandler {
 	
-	private CustomConfigHandler configLoader;
+	private CustomConfigHandler configHandler;
 	
-	public HomeHandler(CustomConfigHandler configLoader) {
-		this.configLoader = configLoader;
+	public HomeHandler(CustomConfigHandler configHandler) {
+		this.configHandler = configHandler;
 	}
 	
-	public boolean exists(Player p, String name) {
-		String path = "homes." + p.getUniqueId() + "." + name;
+	public boolean exists(UUID uuid, String name) {
+		String path = "homes." + uuid + "." + name;
 		
-		if(configLoader.getString(path) == null) {
+		if(configHandler.getString(path) == null) {
 			return false;
 		}
 		
 		return true;
 	}
 	
-	public Location get(Player p, String name) {
-		
-		String path = "homes." + p.getUniqueId() + "." + name;
+	public boolean playerHasHomes(UUID uuid) {
 
-		if(configLoader.getString(path) == null) {
+		if(configHandler.get("homes." + uuid) == null) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public Location get(UUID uuid, String name) {
+		
+		String path = "homes." + uuid + "." + name;
+
+		if(configHandler.getString(path) == null) {
 			return null;
 		}
 		
-		World world = Bukkit.getWorld(configLoader.getString(path + ".world"));
-		double x = configLoader.getDouble(path + ".x");
-		double y = configLoader.getDouble(path + ".y");
-		double z = configLoader.getDouble(path + ".z");
-		double pitch = configLoader.getDouble(path + ".pitch");
-		double yaw = configLoader.getDouble(path + ".yaw");
+		World world = Bukkit.getWorld(configHandler.getString(path + ".world"));
+		double x = configHandler.getDouble(path + ".x");
+		double y = configHandler.getDouble(path + ".y");
+		double z = configHandler.getDouble(path + ".z");
+		double pitch = configHandler.getDouble(path + ".pitch");
+		double yaw = configHandler.getDouble(path + ".yaw");
 		
 		Location location = new Location(world, x, y, z, (float) yaw, (float) pitch);
 		
 		return location;
 	}
 	
-	public void delete(Player p, String name) {
-		String path = "homes." + p.getUniqueId() + "." + name;
-		configLoader.delete(path);
+	public void delete(UUID uuid, String name) {
+		String path = "homes." + uuid + "." + name;
+		configHandler.delete(path);
 		
-		configLoader.save();
+		configHandler.save();
 	}
 	
 	public void add(Player p, String name) {
@@ -62,14 +73,19 @@ public class HomeHandler {
 		
 		String path = "homes." + p.getUniqueId() + "." + name;
 		
-		configLoader.set(path + ".world", world);
-		configLoader.set(path + ".x", x);
-		configLoader.set(path + ".y", y);
-		configLoader.set(path + ".z", z);
-		configLoader.set(path + ".pitch", pitch);
-		configLoader.set(path + ".yaw", yaw);
+		configHandler.set(path + ".world", world);
+		configHandler.set(path + ".x", x);
+		configHandler.set(path + ".y", y);
+		configHandler.set(path + ".z", z);
+		configHandler.set(path + ".pitch", pitch);
+		configHandler.set(path + ".yaw", yaw);
 		
-		configLoader.save();
+		configHandler.save();
+	}
+	
+	public Object[] getHomeList(UUID uuid) {
+		Object[] fields = configHandler.getConfig().getConfigurationSection("homes." + uuid).getKeys(false).toArray();
+		return fields;
 	}
 	
 }

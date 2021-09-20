@@ -41,8 +41,8 @@ public class DelHomeCommand implements CommandExecutor {
 		
 		String name = args[0];
 		
-		if(home.exists(p, name)) {
-			home.delete(p, name);
+		if(home.exists(p.getUniqueId(), name)) {
+			home.delete(p.getUniqueId(), name);
 			TextOutput.outputToPlayer(p, "Home " + name + " successfully deleted.");
 		} else {
 			TextOutput.outputToPlayer(p, "This Home does not exist.");

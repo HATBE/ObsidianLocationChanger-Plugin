@@ -18,12 +18,13 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		TextOutput.outputToConsole("Starting");
 		
-		configHandler = new ConfigHandler(this);
+		//configHandler = new ConfigHandler(this);
 		homesConfig = new CustomConfigHandler(this, "homes.yaml");
 		
 		//configLoader.setDefaults(key, value);
 		//homesConfig.setDefaults(key, value);
 		
+		// obsidianhome.home.use, obsidian.home.use.other
 		this.getCommand("home").setExecutor(new HomeCommand(homesConfig));
 		this.getCommand("setHome").setExecutor(new SetHomeCommand(homesConfig));
 		this.getCommand("delHome").setExecutor(new DelHomeCommand(homesConfig));

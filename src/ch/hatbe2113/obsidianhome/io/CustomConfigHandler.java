@@ -53,6 +53,11 @@ public class CustomConfigHandler {
 		config.set(path, null);
 	}
 	
+	public Object get(String path) {
+		Object o = config.get(path);
+		return o;
+	}
+	
 	public String getString(String path) {
 		String s = config.getString(path);
 		return s;
