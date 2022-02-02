@@ -1,25 +1,25 @@
-package ch.hatbe2113.obsidianhome.io;
+package ch.hatbe2113.ObsidianLocationChanger.io;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import ch.hatbe2113.obsidianhome.Main;
+import ch.hatbe2113.ObsidianLocationChanger.Main;
 
 public class ConfigHandler {
-	
 	private Main main;
-	private FileConfiguration config;
+	protected FileConfiguration config;
 	
 	public ConfigHandler(Main main) {
 		this.main = main;
-		this.config = main.getConfig();
+		config = main.getConfig();
 	}
 	
-	public void setDefaults(String path, Object obj) {
+	public void addDefault(String path, Object obj) {
 		config.addDefault(path, obj);
 		config.options().copyDefaults(true);
-		main.saveConfig();
+		
+		save();
 	}
-	
+		
 	public FileConfiguration getConfig() {
 		return config;
 	}
@@ -27,9 +27,13 @@ public class ConfigHandler {
 	public void save() {
 		main.saveConfig();
 	}
-
+	
 	public void set(String path, Object obj) {
 		config.set(path, obj);
+	}
+	
+	public Object get(String path) {
+		return config.get(path);
 	}
 	
 	public void delete(String path) {
@@ -37,18 +41,14 @@ public class ConfigHandler {
 	}
 	
 	public String getString(String path) {
-		String str = config.getString(path);
-		return str;
+		return config.getString(path);
 	}
 	
 	public Double getDouble(String path) {
-		double d = config.getDouble(path);
-		return d;
+		return config.getDouble(path);
 	}
 	
 	public int getInt(String path) {
-		int i = config.getInt(path);
-		return i;
-	}
-	
+		return config.getInt(path);
+	}		
 }

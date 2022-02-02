@@ -1,13 +1,12 @@
-package ch.hatbe2113.obsidianhome.io;
+package ch.hatbe2113.ObsidianLocationChanger.io;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class TextOutput {
-	
-	public static final String PREFIX = ChatColor.GRAY + "[" + ChatColor.DARK_PURPLE + "ObsidianHome" + ChatColor.GRAY + "]" + ChatColor.RESET + " ";
-	public static final String PLAIN_PREFIX = "[ObsidianHome] ";
+	public static final String PREFIX = ChatColor.GRAY + "[" + ChatColor.DARK_PURPLE + "OLC" + ChatColor.GRAY + "]" + ChatColor.RESET + " ";
+	public static final String PLAIN_PREFIX = "[OLC] ";
 	
 	public static void outputToConsole(String msg) {
 		System.out.println(PLAIN_PREFIX + msg);
@@ -44,5 +43,4 @@ public class TextOutput {
 			s.sendMessage(msg);
 		}
 	}
-	
 }
